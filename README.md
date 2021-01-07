@@ -11,7 +11,7 @@ The message will be posted to the following topic: `cups/brother_hl_2070n` (for 
 ```json
 {
   "jobs-completed":499,
-  "jobs-queued;":0
+  "jobs-queued":0
 }
 ```
 
