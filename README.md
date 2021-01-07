@@ -1,4 +1,5 @@
 # cups-to-mqtt
+[![mqtt-smarthome](https://img.shields.io/badge/mqtt-smarthome-blue.svg)](https://github.com/mqtt-smarthome/mqtt-smarthome)
 
 Convert the CUPS printer queues to mqtt messages
 
