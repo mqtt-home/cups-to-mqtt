@@ -12,7 +12,8 @@ Example: `cups/brother_hl_2070n`
 ```json
 {
   "jobs-completed":499,
-  "jobs-queued;":0}
+  "jobs-queued;":0
+}
 ```
 
 ## Example configuration
