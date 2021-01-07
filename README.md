@@ -6,8 +6,7 @@ Convert the CUPS printer queues to mqtt messages
 
 ## Example message
 
-The message will be posted to the following topic:
-Example: `cups/brother_hl_2070n`
+The message will be posted to the following topic: `cups/brother_hl_2070n` (for a printer named `brother_hl_2070n`)
 
 ```json
 {
