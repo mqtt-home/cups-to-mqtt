@@ -1,0 +1,13 @@
+{
+	"mqtt": {
+		"url": "tcp://192.168.2.98:1883",
+		"username": "user",
+		"password": "password",
+		"deduplicate": true
+	},
+	"cups": {
+		"host": "192.168.3.15",
+		"port": 631,
+		"username": "anonymous"
+	}
+}
