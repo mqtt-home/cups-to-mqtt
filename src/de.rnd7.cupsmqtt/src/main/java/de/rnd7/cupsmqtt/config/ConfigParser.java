@@ -13,22 +13,22 @@ import java.time.Duration;
 
 public class ConfigParser {
 
-	private ConfigParser() {
-	}
+    private ConfigParser() {
+    }
 
-	public static Config parse(final File file) throws IOException {
-		try (InputStream in = new FileInputStream(file)) {
-			return parse(in);
-		}
-	}
+    public static Config parse(final File file) throws IOException {
+        try (InputStream in = new FileInputStream(file)) {
+            return parse(in);
+        }
+    }
 
-	public static Config parse(final InputStream in) throws IOException {
-		final String json = IOUtils.toString(in, StandardCharsets.UTF_8);
+    public static Config parse(final InputStream in) throws IOException {
+        final String json = IOUtils.toString(in, StandardCharsets.UTF_8);
 
-		final Gson gson = new GsonBuilder()
-				.registerTypeAdapter(Duration.class, new DurationDeserializer())
-				.create();
+        final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(Duration.class, new DurationDeserializer())
+            .create();
 
-		return gson.fromJson(json, Config.class);
-	}
+        return gson.fromJson(json, Config.class);
+    }
 }

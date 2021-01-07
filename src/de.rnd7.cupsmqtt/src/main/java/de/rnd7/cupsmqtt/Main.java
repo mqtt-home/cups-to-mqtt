@@ -1,20 +1,14 @@
 package de.rnd7.cupsmqtt;
 
 import de.rnd7.cupsmqtt.config.Config;
-import de.rnd7.cupsmqtt.config.ConfigCups;
 import de.rnd7.cupsmqtt.config.ConfigParser;
 import de.rnd7.cupsmqtt.cups.CupsService;
 import de.rnd7.cupsmqtt.mqtt.GwMqttClient;
-import org.cups4j.CupsClient;
-import org.cups4j.CupsPrinter;
-import org.cups4j.PrintJobAttributes;
-import org.cups4j.WhichJobsEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class Main {
 
@@ -31,7 +25,7 @@ public class Main {
             Events.register(client);
 
             new CupsService(config.getCups())
-                    .start();
+                .start();
 
         } catch (final Exception e) {
             LOGGER.error(e.getMessage(), e);

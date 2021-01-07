@@ -4,7 +4,7 @@ public class PublishMessage {
     private final String topic;
     private final String message;
 
-    public PublishMessage(String topic, String message) {
+    public PublishMessage(final String topic, final String message) {
         this.topic = topic;
         this.message = message;
     }
@@ -17,11 +17,11 @@ public class PublishMessage {
         return message;
     }
 
-    public static String cleanTopic(String topic) {
+    public static String cleanTopic(final String topic) {
         return topic
-                .replace(" ", "-").toLowerCase()
-                .replace("ä", "ae")
-                .replace("ö", "oe")
-                .replace("ü", "ue");
+            .replace(" ", "-").toLowerCase()
+            .replace("ä", "ae")
+            .replace("ö", "oe")
+            .replace("ü", "ue");
     }
 }

@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -59,8 +58,7 @@ public class CupsService {
                 Events.getBus().post(new PublishMessage(PublishMessage.cleanTopic("cups/" + printer.getName()), gson.toJson(cupsMessage)));
             }
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             LOGGER.error(e.getMessage(), e);
         }
     }
