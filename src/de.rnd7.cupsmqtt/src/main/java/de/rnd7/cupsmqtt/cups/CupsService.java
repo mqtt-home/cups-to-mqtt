@@ -28,7 +28,7 @@ public class CupsService {
     public static class CupsMessage {
         @SerializedName("jobs-completed")
         int jobsCompleted;
-        @SerializedName("jobs-queued;")
+        @SerializedName("jobs-queued")
         int jobsQueued;
     }
 
