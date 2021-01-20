@@ -37,6 +37,17 @@ The message will be posted to the following topic: `cups/brother_hl_2070n` (for 
 
 When `deduplicate` is set to `true` no duplicate mqtt messages will be sent.
 
+# Bridge status
+
+The bridge maintains two status topics:
+
+## Topic: `.../bridge/state`
+
+| Value     | Description                          |
+| --------- | ------------------------------------ |
+| `online`  | The bridge is started                |
+| `offline` | The bridge is currently not started. |
+
 # Docker
 
 This application is intended to be executed using docker. Example docker compose usage:

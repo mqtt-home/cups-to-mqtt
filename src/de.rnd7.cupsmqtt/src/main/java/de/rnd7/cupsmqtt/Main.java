@@ -4,6 +4,7 @@ import de.rnd7.cupsmqtt.config.Config;
 import de.rnd7.cupsmqtt.config.ConfigParser;
 import de.rnd7.cupsmqtt.cups.CupsService;
 import de.rnd7.cupsmqtt.mqtt.GwMqttClient;
+import de.rnd7.cupsmqtt.mqtt.PublishMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,8 +22,10 @@ public class Main {
         try {
             Events.register(this);
             final GwMqttClient client = new GwMqttClient(config, Events.getBus());
+            registerOfflineHook(client);
 
             Events.register(client);
+            client.online();
 
             new CupsService(config.getCups())
                 .start();
@@ -30,6 +33,14 @@ public class Main {
         } catch (final Exception e) {
             LOGGER.error(e.getMessage(), e);
         }
+    }
+
+    private void registerOfflineHook(final GwMqttClient mqttClient) {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                mqttClient.shutdown();
+            }
+        });
     }
 
     public static void main(final String[] args) {

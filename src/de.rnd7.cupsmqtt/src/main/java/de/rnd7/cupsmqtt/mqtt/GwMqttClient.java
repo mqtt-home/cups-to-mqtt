@@ -28,6 +28,7 @@ public class GwMqttClient {
     private static final String CLIENT_ID = "cups-mqtt-gw";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(GwMqttClient.class);
+    public static final String STATE = "bridge/state";
 
     private final MemoryPersistence persistence = new MemoryPersistence();
     private final Object mutex = new Object();
@@ -155,5 +156,22 @@ public class GwMqttClient {
                 this.client = this.connect();
             }
         }
+    }
+
+    public void online() {
+        publish(new PublishMessage(config.getTopic() + "/" + STATE, "online"));
+    }
+
+    public void shutdown() {
+        client.ifPresent(c -> {
+            try {
+                publish(new PublishMessage(config.getTopic() + "/" + STATE, "offline"));
+
+                c.disconnect();
+                c.close();
+            } catch (MqttException e) {
+                LOGGER.debug(e.getMessage(), e);
+            }
+        });
     }
 }

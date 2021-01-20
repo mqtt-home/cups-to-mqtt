@@ -8,7 +8,7 @@ public class ConfigMqtt {
     private String url;
     private String username;
     private String password;
-    private String topic = "hue";
+    private String topic = "cups";
     private boolean retain = true;
     private boolean deduplicate = true;
 
