@@ -4,7 +4,6 @@ import de.rnd7.cupsmqtt.config.Config;
 import de.rnd7.cupsmqtt.config.ConfigParser;
 import de.rnd7.cupsmqtt.cups.CupsService;
 import de.rnd7.cupsmqtt.mqtt.GwMqttClient;
-import de.rnd7.cupsmqtt.mqtt.PublishMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
