@@ -2,10 +2,11 @@ package de.rnd7.cupsmqtt.cups;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import de.rnd7.cupsmqtt.Events;
 import de.rnd7.cupsmqtt.Main;
 import de.rnd7.cupsmqtt.config.ConfigCups;
-import de.rnd7.cupsmqtt.mqtt.PublishMessage;
+import de.rnd7.mqttgateway.Events;
+import de.rnd7.mqttgateway.PublishMessage;
+import de.rnd7.mqttgateway.TopicCleaner;
 import org.cups4j.CupsClient;
 import org.cups4j.CupsPrinter;
 import org.cups4j.PrintJobAttributes;
@@ -55,7 +56,9 @@ public class CupsService {
                 final List<PrintJobAttributes> notCompleted = printer.getJobs(WhichJobsEnum.NOT_COMPLETED, null, false);
                 cupsMessage.jobsQueued = notCompleted.size();
 
-                Events.getBus().post(new PublishMessage(PublishMessage.cleanTopic("cups/" + printer.getName()), gson.toJson(cupsMessage)));
+                Events.getBus().post(
+                    PublishMessage.relative(TopicCleaner.clean(printer.getName()), gson.toJson(cupsMessage))
+                );
             }
 
         } catch (Exception e) {

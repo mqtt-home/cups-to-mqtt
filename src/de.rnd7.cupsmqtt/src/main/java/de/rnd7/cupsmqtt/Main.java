@@ -1,9 +1,10 @@
 package de.rnd7.cupsmqtt;
 
 import de.rnd7.cupsmqtt.config.Config;
-import de.rnd7.cupsmqtt.config.ConfigParser;
 import de.rnd7.cupsmqtt.cups.CupsService;
-import de.rnd7.cupsmqtt.mqtt.GwMqttClient;
+import de.rnd7.mqttgateway.Events;
+import de.rnd7.mqttgateway.GwMqttClient;
+import de.rnd7.mqttgateway.config.ConfigParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,10 +21,11 @@ public class Main {
 
         try {
             Events.register(this);
-            final GwMqttClient client = new GwMqttClient(config, Events.getBus());
-            registerOfflineHook(client);
 
-            Events.register(client);
+            final GwMqttClient client = GwMqttClient.start(config.getMqtt()
+                .setDefaultClientId("cups-mqtt-gw")
+                .setDefaultTopic("cups"));
+
             client.online();
 
             new CupsService(config.getCups())
@@ -34,14 +36,6 @@ public class Main {
         }
     }
 
-    private void registerOfflineHook(final GwMqttClient mqttClient) {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                mqttClient.shutdown();
-            }
-        });
-    }
-
     public static void main(final String[] args) {
         if (args.length != 1) {
             LOGGER.error("Expected configuration file as argument");
@@ -49,7 +43,7 @@ public class Main {
         }
 
         try {
-            new Main(ConfigParser.parse(new File(args[0])));
+            new Main(ConfigParser.parse(new File(args[0]), Config.class));
         } catch (final IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
