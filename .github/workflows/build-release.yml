@@ -60,8 +60,8 @@ jobs:
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                 with:
-                    tag_name: "$RELEASE_VERSION"
-                    release_name: "$RELEASE_VERSION"
+                    tag_name: ${{env.RELEASE_VERSION}}
+                    release_name: ${{env.RELEASE_VERSION}}
                     body: |
                         Docker tag: `pharndt/cupsmqtt:${{env.RELEASE_VERSION}}`
 
