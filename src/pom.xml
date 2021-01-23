@@ -97,12 +97,4 @@
     <modules>
         <module>de.rnd7.cupsmqtt</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>de.rnd7.mqttgateway</groupId>
-            <artifactId>mqttgateway</artifactId>
-            <version>1.0.6</version>
-        </dependency>
-    </dependencies>
 </project>
