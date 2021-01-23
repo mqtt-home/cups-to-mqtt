@@ -2,11 +2,12 @@ name: Build release
 
 on:
     workflow_dispatch:
-        env:
-            RELEASE_VERSION: 1.1.0-b${{ github.run_number }}
+
 jobs:
     build:
         runs-on: ubuntu-latest
+        env:
+            RELEASE_VERSION: 1.1.0-b${{ github.run_number }}
 
         steps:
             -   name: Checkout
