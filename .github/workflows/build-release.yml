@@ -18,7 +18,7 @@ jobs:
                 with:
                     java-version: 8
 
-            -   name: "Update version to $RELEASE_VERSION"
+            -   name: Update version to ${{env.RELEASE_VERSION}}
                 env:
                     USENAME: ${{github.actor}}
                     PASSWORD: ${{ secrets.GITHUB_TOKEN }}
@@ -52,7 +52,7 @@ jobs:
                     push: true
                     tags: |
                         pharndt/cupsmqtt:latest
-                        "pharndt/cupsmqtt:$RELEASE_VERSION"
+                        pharndt/cupsmqtt:${{env.RELEASE_VERSION}}
 
             -   name: Create Release
                 id: create_release
@@ -63,7 +63,7 @@ jobs:
                     tag_name: "$RELEASE_VERSION"
                     release_name: "$RELEASE_VERSION"
                     body: |
-                        Docker tag: `pharndt/cupsmqtt:$RELEASE_VERSION`
+                        Docker tag: `pharndt/cupsmqtt:${{env.RELEASE_VERSION}}`
 
                         Changes in this Release
                           - ...
