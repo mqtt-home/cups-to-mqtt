@@ -22,11 +22,9 @@ public class Main {
         try {
             Events.register(this);
 
-            final GwMqttClient client = GwMqttClient.start(config.getMqtt()
-                .setDefaultClientId("cups-mqtt-gw")
-                .setDefaultTopic("cups"));
-
-            client.online();
+            GwMqttClient.start(config.getMqtt()
+                .setDefaultTopic("cups"))
+                .online();
 
             new CupsService(config.getCups())
                 .start();
